@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card col-md-10 offset-10 mt-lg-5" style="margin-left: 15%">
+    <div class="card-header" style="text-decoration-style: solid">New Customer</div>
+    <div class="card-body">
+      <form [formGroup]="newEnginFormGroup" (ngSubmit)="handleSaveEngin()">
+        <div class="mb-3">
+          <label class="form-label">Matricule de l'engin:</label>
+          <input type="text" formControlName="matricule_engin" class="form-control">
+          <span class="text-danger"
+                *ngIf="newEnginFormGroup.controls['matricule_engin'].touched
+                && newEnginFormGroup.controls['matricule_engin'].errors
+                && newEnginFormGroup.controls['matricule_engin'].errors!['required']">
+            Matricule is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Capacite Engin:</label>
+          <input type="text" formControlName="capacite_engin" class="form-control">
+          <span class="text-danger"
+                *ngIf="newEnginFormGroup.controls['capacite_engin'].touched
+                && newEnginFormGroup.controls['capacite_engin'].errors
+                && newEnginFormGroup.controls['capacite_engin'].errors!['required']">
+            Nom is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Taille Engin:</label>
+          <input type="text" formControlName="taille_Engin" class="form-control">
+          <span class="text-danger"
+                *ngIf="newEnginFormGroup.controls['taille_Engin'].touched
+                && newEnginFormGroup.controls['taille_Engin'].errors
+                && newEnginFormGroup.controls['taille_Engin'].errors!['required']">
+            Taille is Required
+          </span>
+        </div>
+        <button style="margin-left: 40% ; width: 100px" [disabled]="!newEnginFormGroup.valid" class="btn btn-dark">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

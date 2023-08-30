@@ -1,0 +1,74 @@
+<div class="container mt-2">
+  <ng-container *ngIf="Navires | async as navires; else loadingContent" >
+    <div class="card" style="margin-left: 15%">
+      <div class="card-body">
+    <div *ngIf="searchFormGroup">
+      <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchNavires()">
+        <div class="input-group">
+          <label class="input-group-text">Date d'arrivee :</label>
+          <input type="datetime-local" formControlName="keyword" class="form-control">
+          <button style="border-color: #2f2f2f"  class="btn ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  <div style="margin-top: 30px"  *ngIf="Navires">
+
+      <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+          <th>ID</th><th>Nom Navire</th><th>Taille</th><th>Date d'arrivee</th><th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let n of Navires | async">
+          <td>{{n.id_Navire}}</td>
+          <td>{{n.nom_Navire}}</td>
+          <td>{{n.taille_Navire}}</td>
+          <td>{{n.date_arrivee}}</td>
+          <td>
+
+            <button (click)="handleDeleteNavire(n)" class="btn btn-danger">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+              </svg>
+            </button>
+            <button (click)="afficherFormulaire(n)" class="btn btn-success" style="margin-left: 20px ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-menu-button-wide-fill" viewBox="0 0 16 16">
+                <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5v2A1.5 1.5 0 0 0 1.5 5h13A1.5 1.5 0 0 0 16 3.5v-2A1.5 1.5 0 0 0 14.5 0h-13zm1 2h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1zm9.927.427A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0l-.396-.396zM0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2H1zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2h14zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+              </svg>
+            </button>
+            <app-formulaire *ngIf="afficherLeFormulaire"></app-formulaire>
+          </td>
+
+        </tr>
+        </tbody>
+      </table>
+    <mat-paginator [length]="100"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   aria-label="Select page">
+    </mat-paginator>
+    </div>
+
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <ng-template #loadingContent>
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      Loading .....
+    </ng-template>
+  </ng-template>
+</div>

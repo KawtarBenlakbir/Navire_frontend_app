@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="card col-md-10 offset-10 mt-lg-5" style="margin-left: 15%">
+    <div class="card-header">New Customer</div>
+    <div class="card-body">
+      <form [formGroup]="newGrueFormGroup" (ngSubmit)="handleSaveGrue()">
+        <div class="mb-3">
+          <label class="form-label">Matricule de la Grue:</label>
+          <input type="text" formControlName="matricule_grue" class="form-control">
+          <span class="text-danger"
+                *ngIf="newGrueFormGroup.controls['matricule_grue'].touched
+                && newGrueFormGroup.controls['matricule_grue'].errors
+                && newGrueFormGroup.controls['matricule_grue'].errors!['required']">
+            Matricule is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nom du Grue:</label>
+          <input type="text" formControlName="nom_grue" class="form-control">
+          <span class="text-danger"
+                *ngIf="newGrueFormGroup.controls['nom_grue'].touched
+                && newGrueFormGroup.controls['nom_grue'].errors
+                && newGrueFormGroup.controls['nom_grue'].errors!['required']">
+            Nom  is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Taille du Grue:</label>
+          <input type="text" formControlName="taille_Grue" class="form-control">
+          <span class="text-danger"
+                *ngIf="newGrueFormGroup.controls['taille_Grue'].touched
+                && newGrueFormGroup.controls['taille_Grue'].errors
+                && newGrueFormGroup.controls['taille_Grue'].errors!['required']">
+            Nom  is Required
+          </span>
+        </div>
+        <button style="margin-left: 40% ; width: 100px" [disabled]="!newGrueFormGroup.valid" class="btn btn-dark">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card col-md-10 offset-10 mt-lg-5" style="margin-left: 15%">
+    <div class="card-header"> L'affectation pour la navire d'ID<h3 style="font-family: Arial ">{{NavireId}}</h3></div>
+    <div class="card-body">
+      <form [formGroup]="formulaire" (ngSubmit)="handleSaveAffectation()">
+        <div class="mb-3">
+          <label class="form-label">Engin:</label>
+          <select class="form-select" aria-label="Default select example" formControlName="engin_id" >
+            <option *ngFor="let engin of Engin | async" [value]="engin.matricule_engin">{{ engin.matricule_engin }} </option>
+          </select>
+          <span class="text-danger"
+                *ngIf="formulaire.controls['engin_id'].touched
+                && formulaire.controls['engin_id'].errors
+                && formulaire.controls['engin_id'].errors!['required']">
+            matricule_engin is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Equipe:</label>
+          <select class="form-select" aria-label="Default select example" formControlName="equipe_id" >
+            <option *ngFor="let equipe of Equipe | async" [value]="equipe.matricule_Equipe">  {{ equipe.matricule_Equipe }} </option>
+          </select>
+          <span class="text-danger"
+                *ngIf="formulaire.controls['equipe_id'].touched
+                && formulaire.controls['equipe_id'].errors
+                && formulaire.controls['equipe_id'].errors!['required']">
+            matricule_Equipe is Required
+          </span>
+        </div>
+        <div class="mb-3">
+        <label class="form-label">Grue:</label>
+        <select class="form-select" aria-label="Default select example" formControlName="grue_id" >
+          <option *ngFor="let grue of Grue | async" [value]="grue.matricule_grue"  >{{ grue.matricule_grue }}  </option>
+        </select>
+          <span class="text-danger"
+                *ngIf="formulaire.controls['grue_id'].touched
+                && formulaire.controls['grue_id'].errors
+                && formulaire.controls['grue_id'].errors!['required']">
+            matricule_grue is Required
+          </span>
+      </div>
+        <button style=" width: 100px" [disabled]="!formulaire.valid" class="btn btn-dark">Save</button>
+        <a style="margin-left: 500px ; width: 100px" routerLink="/admin/Navire" class="btn btn-dark">Exit</a>
+      </form>
+    </div>
+  </div>
+</div>

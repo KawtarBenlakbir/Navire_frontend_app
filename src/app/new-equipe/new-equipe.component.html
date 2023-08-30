@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="card col-md-10 offset-10 mt-lg-5" style="margin-left: 15%">
+    <div class="card-header">New Customer</div>
+    <div class="card-body">
+      <form [formGroup]="newEquipeFormGroup" (ngSubmit)="handleSaveEquipe()">
+        <div class="mb-3">
+          <label class="form-label">Matricule de l'Equipe:</label>
+          <input type="text" formControlName="matricule_Equipe" class="form-control">
+          <span class="text-danger"
+                *ngIf="newEquipeFormGroup.controls['matricule_Equipe'].touched
+                && newEquipeFormGroup.controls['matricule_Equipe'].errors
+                && newEquipeFormGroup.controls['matricule_Equipe'].errors!['required']">
+            Matricule is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nombre des Membres:</label>
+          <input type="text" formControlName="nombre_Membre" class="form-control">
+          <span class="text-danger"
+                *ngIf="newEquipeFormGroup.controls['nombre_Membre'].touched
+                && newEquipeFormGroup.controls['nombre_Membre'].errors
+                && newEquipeFormGroup.controls['nombre_Membre'].errors!['required']">
+            Nombre des Membres is Required
+          </span>
+        </div>
+        <button style="margin-left: 40% ; width: 100px" [disabled]="!newEquipeFormGroup.valid" class="btn btn-dark">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+

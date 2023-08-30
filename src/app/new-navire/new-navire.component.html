@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="card col-md-10 offset-10 mt-lg-5" style="margin-left: 15%">
+    <div class="card-header">New Navire</div>
+    <div class="card-body">
+      <form [formGroup]="newNavireFormGroup" (ngSubmit)="handleSaveNavire()">
+        <div class="mb-3">
+          <label class="form-label">ID Navire:</label>
+          <input type="text" formControlName="id_Navire" class="form-control">
+          <span class="text-danger"
+                *ngIf="newNavireFormGroup.controls['id_Navire'].touched
+                && newNavireFormGroup.controls['id_Navire'].errors
+                && newNavireFormGroup.controls['id_Navire'].errors!['required']">
+            ID is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nom Navire:</label>
+          <input type="text" formControlName="nom_Navire" class="form-control">
+          <span class="text-danger"
+                *ngIf="newNavireFormGroup.controls['nom_Navire'].touched
+                && newNavireFormGroup.controls['nom_Navire'].errors
+                && newNavireFormGroup.controls['nom_Navire'].errors!['required']">
+            Nom is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Taille :</label>
+          <input type="text" formControlName="taille_Navire" class="form-control">
+          <span class="text-danger"
+                *ngIf="newNavireFormGroup.controls['taille_Navire'].touched
+                && newNavireFormGroup.controls['taille_Navire'].errors
+                && newNavireFormGroup.controls['taille_Navire'].errors!['required']">
+            Taille is Required
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Date arrivee:</label>
+          <input type="datetime-local" formControlName="date_arrivee" class="form-control">
+          <span class="text-danger"
+                *ngIf="newNavireFormGroup.controls['date_arrivee'].touched
+                && newNavireFormGroup.controls['date_arrivee'].errors
+                && newNavireFormGroup.controls['date_arrivee'].errors!['required']">
+            Date is Required
+          </span>
+        </div>
+        <button style="margin-left: 40% ; width: 100px" [disabled]="!newNavireFormGroup.valid" class="btn btn-dark">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+
